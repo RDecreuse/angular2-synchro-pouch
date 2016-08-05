@@ -14,7 +14,7 @@ import {
 import { MockBackend } from '@angular/http/testing';
 import { getDOM } from '@angular/platform-browser/src/dom/dom_adapter';
 
-import { NameListService } from '../shared/index';
+import { NameListService } from '../../shared/index';
 import { HomeComponent } from './home.component';
 
 export function main() {

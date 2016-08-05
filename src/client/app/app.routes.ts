@@ -1,7 +1,7 @@
 import { provideRouter, RouterConfig } from '@angular/router';
 
-import { AboutRoutes } from './+about/index';
-import { HomeRoutes } from './+home/index';
+import { AboutRoutes } from './pages/about/index';
+import { HomeRoutes } from './pages/home/index';
 
 const routes: RouterConfig = [
   ...HomeRoutes,

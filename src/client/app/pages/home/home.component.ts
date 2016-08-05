@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
 
-import { NameListService } from '../shared/index';
+import { NameListService } from '../../shared/index';
 
 /**
  * This class represents the lazy loaded HomeComponent.
