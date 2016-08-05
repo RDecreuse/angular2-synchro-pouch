@@ -1,0 +1,16 @@
+<table class="table">
+  <thead>
+  <tr class="theadcustomcss">
+    <th>#</th>
+    <th>Name</th>
+    <th>Age</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let animal of animals">
+    <td>{{animal._id}}</td>
+    <td>{{animal.name}}</td>
+    <td>{{animal.age}}</td>
+  </tr>
+  </tbody>
+</table>
