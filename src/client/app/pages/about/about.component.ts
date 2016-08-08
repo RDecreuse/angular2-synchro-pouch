@@ -23,22 +23,29 @@ export class AboutComponent implements OnInit {
 
     ngOnInit(): any {
         var observable = this.animalService.replicate(true);
-        var subscription = observable.subscribe(
-            (x: any) => {
-                console.log('observable next: ' + x);
+        observable.subscribe(
+            () => {
+                console.log('observable next, replication on pause');
                 this.displayResultAnimals();
             },
             (err: any) => {
                 console.log('Error: ' + err);
             },
             () => {
-                console.log('observable Completed');
+                console.log('observable Completed, replication done');
                 this.displayResultAnimals();
             });
     }
 
     private displayResultAnimals(): void {
-        this.animals = this.animalService.getAnimals();
+        this.animals = new Array<Animal>();
+        this.animalService.getAnimals().subscribe((animal: Animal) => {
+                console.log('observable next, animal=' + animal);
+                this.animals.push(animal);
+            },
+            (err: any) => {
+                console.log('Error: ' + err);
+            });
     }
 
 }
