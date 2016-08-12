@@ -16,14 +16,27 @@ declare var PouchDB: any;
 })
 export class AboutComponent implements OnInit {
     public animals: Animal[];
-
+    public newAnimal: Animal = new Animal();
 
     constructor(private animalService: AnimalService) {
     }
 
     ngOnInit(): any {
-        var observable = this.animalService.replicate(true);
-        observable.subscribe(
+        this.animalService.initDb().subscribe(() => {
+                // shouldn't go there.
+                console.error("init db next");
+            },
+            (e: any) => {
+                console.log("init db error :" + e);
+            },
+            ()=> {
+                console.log("init db complete");
+                this.startReplication();
+            });
+    }
+
+    private startReplication() {
+        this.animalService.replicate(true).subscribe(
             () => {
                 console.log('observable next, replication on pause');
                 this.displayResultAnimals();
@@ -35,6 +48,7 @@ export class AboutComponent implements OnInit {
                 console.log('observable Completed, replication done');
                 this.displayResultAnimals();
             });
+        this.startUpstreamReplication();
     }
 
     private displayResultAnimals(): void {
@@ -48,4 +62,22 @@ export class AboutComponent implements OnInit {
             });
     }
 
+    public add(): void {
+        this.animalService.createAnimal(this.newAnimal).subscribe(() => {
+                // shouldn't go there.
+                console.error("animal add next");
+            },
+            (e: any) => {
+                console.log("animal add error :" + e);
+            },
+            ()=> {
+                console.log("animal add complete");
+                this.displayResultAnimals();
+                this.newAnimal =  new Animal();
+            });
+    }
+
+    private startUpstreamReplication() {
+        this.animalService.startUpstreamReplication();
+    }
 }
