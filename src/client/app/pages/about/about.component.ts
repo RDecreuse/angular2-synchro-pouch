@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Animal} from "../../shared/model/Animal";
-import {AnimalService} from "../../services/animal.service";
+import {Animal} from "services-pouchdb";
+import {AnimalService} from "services-pouchdb";
 
 declare var PouchDB: any;
 
